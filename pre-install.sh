@@ -3,7 +3,9 @@
 # Check if Homebrew is installed
 if [ ! -f "`which brew`" ]; then
   echo 'Installing homebrew'
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/thap/.zprofile
+   eval "$(/opt/homebrew/bin/brew shellenv)"
 else
   echo 'Updating homebrew'
   brew update
@@ -17,21 +19,4 @@ if [ ! -d "$OMZDIR" ]; then
   /bin/sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 else
   echo 'omz already install, skipping ...'
-fi
-
-# Check if Mac-CLI is installed
-#if [ ! -f "which mac" ]; then
-#    echo 'Installing Mac-CLI'
-#    /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/install)"
-#else
-#    echo 'Updating Mac-CLI'
-#    /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/update)"
-#fi
-
-# Change default shell
-if [! $0 = "-zsh"]; then
-  echo 'Changing default shell to zsh'
-  chsh -s /bin/zsh
-else
-  echo 'Already using zsh'
 fi

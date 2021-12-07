@@ -5,15 +5,13 @@
      shell:
        stderr: true
 
- - brewfile:
-     - brew/Brewfile
-
  - link:
      ~/.zshrc:
        force: true
        path: zsh/zshrc
      ~/.p10k.zsh: zsh/p10k.zsh
      ~/.vimrc: vim/vimrc
+     ~/.zprofile: zsh/zprofile
      ~/.gitconfig: git/gitconfig
      ~/.oh-my-zsh/custom/plugins/zsh-syntax-jigj-lighting: zsh/plugins/zsh-syntax-highlighting/
      ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions: zsh/plugins/zsh-autosuggestions/
@@ -23,4 +21,9 @@
        path: iTerm2/com.googlecode.iterm2.plist
 
  - shell:
+   #- chsh -s $(which zsh)
+   - [git submodule update --init --recursive, Installing submodules]
    - [macos/settings, MacOS Settings]
+
+ - brewfile:
+     - brew/Brewfile
