@@ -14,8 +14,8 @@ brew "lsd"
 brew "jq"
 brew "testssl"
 brew "openssh" # ed25519-sk
-brew "font-meslo-lg-nerd-font"
 
+cask "font-meslo-lg-nerd-font"
 cask "font-hack-nerd-font"
 cask "firefox"
 cask "visual-studio-code"

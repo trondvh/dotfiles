@@ -5,8 +5,8 @@
      shell:
        stderr: true
 
-         # - brewfile:
-         #- brew/Brewfile
+ - brewfile:
+     - brew/Brewfile
 
  - link:
      ~/.zshrc:
