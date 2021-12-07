@@ -13,6 +13,7 @@ brew "grep"
 brew "lsd"
 brew "jq"
 brew "testssl"
+brew "openssh" # ed25519-sk
 
 cask "font-hack-nerd-font"
 cask "firefox"
