@@ -5,8 +5,8 @@
      shell:
        stderr: true
 
- - brewfile:
-     - brew/Brewfile
+         # - brewfile:
+         #- brew/Brewfile
 
  - link:
      ~/.zshrc:
@@ -15,6 +15,9 @@
      ~/.p10k.zsh: zsh/p10k.zsh
      ~/.vimrc: vim/vimrc
      ~/.gitconfig: git/gitconfig
+     ~/.oh-my-zsh/custom/plugins/zsh-syntax-jigj-lighting: zsh/plugins/zsh-syntax-highlighting/
+     ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions: zsh/plugins/zsh-autosuggestions/
+     ~/.oh-my-zsh/custom/themes/powerlevel10k: zsh/themes/powerlevel10k/
 
  - shell:
    - [macos/settings, MacOS Settings]
