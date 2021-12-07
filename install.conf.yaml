@@ -18,6 +18,9 @@
      ~/.oh-my-zsh/custom/plugins/zsh-syntax-jigj-lighting: zsh/plugins/zsh-syntax-highlighting/
      ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions: zsh/plugins/zsh-autosuggestions/
      ~/.oh-my-zsh/custom/themes/powerlevel10k: zsh/themes/powerlevel10k/
+     ~/Library/Preferences/com.googlecode.iterm2.plist:
+       force: true
+       path: iTerm2/com.googlecode.iterm2.plist
 
  - shell:
    - [macos/settings, MacOS Settings]
