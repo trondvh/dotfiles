@@ -1,0 +1,25 @@
+
+tap "romkatv/powerlevel10k"
+tap "homebrew/cask-fonts"
+
+brew "git"
+brew "kubectl"
+brew "zsh"
+brew "curl"
+brew "tree"
+brew "openssl"
+brew "telnet"
+brew "grep"
+brew "lsd"
+brew "jq"
+brew "testssl"
+
+cask "font-hack-nerd-font"
+cask "firefox"
+cask "visual-studio-code"
+cask "iterm2"
+cask "alfred"
+cask "alt-tab"
+cask "docker"
+cask "lens"
+# Logitech options

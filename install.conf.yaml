@@ -1,0 +1,20 @@
+ - defaults:
+     link:
+       create: true
+       relink: true
+     shell:
+       stderr: true
+
+ - brewfile:
+     - brew/Brewfile
+
+ - link:
+     ~/.zshrc:
+       force: true
+       path: zsh/zshrc
+     ~/.p10k.zsh: zsh/p10k.zsh
+     ~/.vimrc: vim/vimrc
+     ~/.gitconfig: git/gitconfig
+
+ - shell:
+   - [macos/settings, MacOS Settings]
