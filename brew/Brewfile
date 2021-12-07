@@ -24,4 +24,8 @@ cask "alfred"
 cask "alt-tab"
 cask "docker"
 cask "lens"
-# Logitech options
+cask "homebrew/cask-drivers/logitech-options"
+cask "yubico-yubikey-manager"
+cask "hiddenbar"
+
+#mas: hiddenme
