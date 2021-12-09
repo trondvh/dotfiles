@@ -27,5 +27,6 @@ cask "lens"
 cask "homebrew/cask-drivers/logitech-options"
 cask "yubico-yubikey-manager"
 cask "hiddenbar"
+cask "microsoft-remote-desktop"
 
 #mas: hiddenme
