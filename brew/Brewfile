@@ -28,5 +28,6 @@ cask "homebrew/cask-drivers/logitech-options"
 cask "yubico-yubikey-manager"
 cask "hiddenbar"
 cask "microsoft-remote-desktop"
+cask "slack"
 
 #mas: hiddenme
