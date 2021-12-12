@@ -29,5 +29,6 @@ cask "yubico-yubikey-manager"
 cask "hiddenbar"
 cask "microsoft-remote-desktop"
 cask "slack"
+cask "forklift"
 
 #mas: hiddenme
