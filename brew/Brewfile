@@ -30,5 +30,6 @@ cask "hiddenbar"
 cask "microsoft-remote-desktop"
 cask "slack"
 cask "forklift"
+cask "macvim"
 
 #mas: hiddenme
