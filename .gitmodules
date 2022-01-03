@@ -14,3 +14,6 @@
 [submodule "zsh/themes/powerlevel10k"]
 	path = zsh/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "dotbot-vscode"]
+	path = dotbot-vscode
+	url = https://github.com/hujianxin/dotbot-vscode
