@@ -31,3 +31,5 @@
  - vscode:
      ms-python.python:
        status: install
+     ms-azuretools.vscode-docker:
+       status: install
