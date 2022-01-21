@@ -14,6 +14,7 @@ brew "lsd"
 brew "jq"
 brew "testssl"
 brew "openssh" # ed25519-sk
+brew "helm"
 
 cask "font-meslo-lg-nerd-font"
 cask "font-hack-nerd-font"
