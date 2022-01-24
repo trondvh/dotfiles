@@ -28,9 +28,17 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
-
 # Dock
 defaults write com.apple.dock tilesize -integer 20
 defaults write com.apple.dock "autohide" -bool "true"
 defaults write com.apple.dock "autohide-delay" -float "0"
 defaults write com.apple.dock "mineffect" -string "scale"
+
+###############################################################################
+# Menu options                                                                #
+###############################################################################
+
+# Show bluetooth menu option
+defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 18
+# Show sound menu option
+defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound -int 18
