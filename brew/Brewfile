@@ -35,5 +35,6 @@ cask "slack"
 cask "forklift"
 cask "macvim"
 cask "spotify"
+cask "microsoft-azure-storage-explorer"
 
 #mas: hiddenme
