@@ -16,6 +16,7 @@ brew "testssl"
 brew "openssh" # ed25519-sk
 brew "helm"
 brew "terraform"
+brew "google-cloud-sdk"
 
 cask "font-meslo-lg-nerd-font"
 cask "font-hack-nerd-font"
