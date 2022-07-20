@@ -1,6 +1,11 @@
 [user]
-	name = Trond Viggo Håpnes
+	name = trondvh
 	email = trond.hapnes@gmail.com
 
 [github]
 	user = trondvh
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
