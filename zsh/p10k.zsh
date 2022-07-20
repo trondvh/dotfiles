@@ -1603,3 +1603,16 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
+
+function kube-toggle() {
+  if (( ${+POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND} )); then
+    unset POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND
+  else
+    POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|flux|fluxctl|stern|kubeseal|skaffold'
+  fi
+  p10k reload
+  if zle; then
+    zle push-input
+    zle accept-line
+  fi
+}
