@@ -1,2 +1,7 @@
 # LSD
 alias ls='lsd'
+
+# k8s
+alias k='kubectl'
+alias kctx='kubectx'
+alias kns='kubens'
