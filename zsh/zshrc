@@ -27,3 +27,6 @@ source $HOME/.dotfiles/zsh/aliases
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+
+# Autocomplete
+source <(kubectl completion zsh)
