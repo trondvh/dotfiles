@@ -17,6 +17,7 @@ brew "helm"
 brew "terraform"
 brew "google-cloud-sdk"
 brew "inetutils"
+brew "wget"
 
 cask "font-meslo-lg-nerd-font"
 cask "font-hack-nerd-font"
