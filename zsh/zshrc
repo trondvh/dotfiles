@@ -30,3 +30,7 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # Autocomplete
 source <(kubectl completion zsh)
+
+#SDKMAN
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
