@@ -40,5 +40,6 @@ cask "macvim"
 cask "spotify"
 cask "microsoft-azure-storage-explorer"
 cask "skitch"
+cask "balenaetcher"
 
 #mas: hiddenme
