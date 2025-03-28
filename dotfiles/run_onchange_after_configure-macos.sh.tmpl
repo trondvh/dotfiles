@@ -1,0 +1,13 @@
+{{ if (eq .chezmoi.os "darwin") -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+# Set Fish as default shell
+echo "/opt/homebrew/bin/fish" | sudo tee -a /etc/shells
+if [ "$SHELL" != "/usr/local/bin/fish" ]
+then
+  chsh -s /opt/homebrew/bin/fish trond.hapnes 
+fi
+
+{{ end -}}

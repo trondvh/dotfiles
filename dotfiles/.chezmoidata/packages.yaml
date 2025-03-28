@@ -1,0 +1,20 @@
+packages:
+  darwin:
+    brews:
+      - fish
+      - starship
+      - git
+      - jq
+      - lsd
+    casks:
+      - firefox
+      - iterm2
+      - spotify
+      - visual-studio-code
+      - raycast
+      - lens
+      - forklift
+      - font-hack-nerd-font
+      - shottr
+      - macvim
+      - marta

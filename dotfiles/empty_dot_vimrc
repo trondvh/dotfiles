@@ -1,0 +1,32 @@
+filetype plugin indent on
+syntax on
+
+:set number
+:set noswapfile
+
+" display settings
+set encoding=utf-8 " encoding used for displaying file
+set ruler " show the cursor position all the time
+set showmatch " highlight matching braces
+set showmode " show insert/replace/visual mode
+
+" Whitespace
+set tabstop=2 
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+" Status bar
+set laststatus=2
+
+" Last line
+set showmode
+set showcmd
+
+" Search settings
+set hlsearch " highlight search results
+set ignorecase " do case insensitive search...
+set incsearch " do incremental search
+set smartcase " ...unless capital letters are used
+
+:command Q q

@@ -1,0 +1,11 @@
+[user]
+    name = "Trond Viggo Håpnes"
+    email = {{ if hasKey . "email" }}{{ .email | quote }}{{ else }}"trond.hapnes@gmail.com"{{ end }}
+
+[github]
+    user = trondvh
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
