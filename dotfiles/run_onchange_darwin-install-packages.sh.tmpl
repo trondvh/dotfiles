@@ -9,4 +9,11 @@ brew {{ . | quote }}
 cask {{ . | quote }}
 {{ end -}}
 EOF
+
+{{- if .packages.darwin.mas }}
+echo "Installing mas packages..."
+{{ range .packages.darwin.mas -}}
+mas install {{ . | quote }}
+{{ end -}}
+{{- end }}
 {{ end -}}
