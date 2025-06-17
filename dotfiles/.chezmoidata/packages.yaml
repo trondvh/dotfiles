@@ -1,21 +1,20 @@
 packages:
-  darwin:
+  common:
     brews:
+      - bat
       - fish
       - starship
       - git
       - jq
       - lsd
-      - autossh
-      - ansible
       - mas
     casks:
+      - bartender
       - firefox
       - iterm2
       - spotify
       - visual-studio-code
       - raycast
-      - lens
       - forklift
       - font-hack-nerd-font
       - shottr
@@ -23,3 +22,38 @@ packages:
       - marta
     mas:
       - 937984704 # amphetamine
+
+  workplace:
+    jobr:
+      brews:
+        - kubectx
+      casks:
+        - adobe-creative-cloud
+        - cursor
+        - docker
+        - google-cloud-sdk
+        - lens
+        - microsoft-outlook
+        - microsoft-teams
+        - slack
+      mas:
+        # Add jobr-specific Mac App Store apps here
+
+    buypass:
+      brews:
+        - ansible
+        - autossh
+        - kubectx
+      casks:
+        - docker
+        - lens
+      mas:
+        # Add buypass-specific Mac App Store apps here
+
+  personal:
+    brews:
+      # Add personal-specific brew packages here
+    casks:
+      # Add personal-specific cask packages here
+    mas:
+      # Add personal-specific Mac App Store apps here

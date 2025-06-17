@@ -1,18 +1,46 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
+# Debug information
+echo "Debug: Available variables:"
+echo "chezmoi.os: {{ .chezmoi.os }}"
+echo "jobr_machine: {{ .jobr_machine }}"
+
+# Install common packages
+echo "Installing common packages..."
 brew bundle --file=/dev/stdin <<EOF
-{{ range .packages.darwin.brews -}}
+{{ range .packages.common.brews -}}
 brew {{ . | quote }}
 {{ end -}}
-{{ range .packages.darwin.casks -}}
+{{ range .packages.common.casks -}}
 cask {{ . | quote }}
 {{ end -}}
 EOF
 
-{{- if .packages.darwin.mas }}
-echo "Installing mas packages..."
-{{ range .packages.darwin.mas -}}
+# Install jobr packages if this is a jobr machine
+{{ if eq .jobr_machine true -}}
+echo "Installing jobr packages..."
+brew bundle --file=/dev/stdin <<EOF
+{{ range .packages.workplace.jobr.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.workplace.jobr.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
+{{ end -}}
+
+# Install Mac App Store apps
+{{- if .packages.common.mas }}
+echo "Installing common Mac App Store apps..."
+{{ range .packages.common.mas -}}
+mas install {{ . | quote }}
+{{ end -}}
+{{- end }}
+
+{{- if and (eq .jobr_machine true) .packages.workplace.jobr.mas }}
+echo "Installing jobr Mac App Store apps..."
+{{ range .packages.workplace.jobr.mas -}}
 mas install {{ . | quote }}
 {{ end -}}
 {{- end }}
