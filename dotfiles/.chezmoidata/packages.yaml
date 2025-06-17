@@ -9,16 +9,17 @@ packages:
       - lsd
       - mas
     casks:
+      - 1password
       - bartender
       - firefox
       - iterm2
+      - macvim
       - spotify
       - visual-studio-code
       - raycast
       - forklift
       - font-hack-nerd-font
       - shottr
-      - macvim
       - marta
     mas:
       - 937984704 # amphetamine
@@ -36,6 +37,7 @@ packages:
         - microsoft-outlook
         - microsoft-teams
         - slack
+        - synology-drive
       mas:
         # Add jobr-specific Mac App Store apps here
 
