@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+# Create .local/bin directory if it doesn't exist
+mkdir -p ~/.local/bin
+
+# Create the update script
+cat > ~/.local/bin/update-brew << 'EOF'
+#!/bin/bash
+
+set -eufo pipefail
+
+echo "Updating Homebrew..."
+brew update
+
+echo "Upgrading Homebrew packages..."
+brew upgrade
+
+echo "Upgrading Homebrew casks..."
+brew upgrade --cask
+
+echo "Cleaning up old versions..."
+brew cleanup
+
+echo "Checking for outdated packages..."
+brew outdated
+
+echo "Checking for system issues..."
+brew doctor
+
+echo "Done!"
+EOF
+
+# Make it executable
+chmod +x ~/.local/bin/update-brew
+
+echo "Brew update script installed to ~/.local/bin/update-brew" 

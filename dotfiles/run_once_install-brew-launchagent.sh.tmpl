@@ -1,0 +1,14 @@
+#!/bin/bash
+set -eufo pipefail
+
+# Ensure LaunchAgents directory exists
+mkdir -p ~/Library/LaunchAgents
+
+# Copy the plist from the rendered config to LaunchAgents
+cp ~/.config/launchagents/local.update-brew.plist ~/Library/LaunchAgents/local.update-brew.plist
+
+# Load the Launch Agent
+launchctl unload ~/Library/LaunchAgents/local.update-brew.plist 2>/dev/null || true
+launchctl load ~/Library/LaunchAgents/local.update-brew.plist
+
+echo "Automatic Homebrew update Launch Agent installed and loaded." 
