@@ -7,7 +7,7 @@ set -eufo pipefail
 echo "/opt/homebrew/bin/fish" | sudo tee -a /etc/shells
 if [ "$SHELL" != "/usr/local/bin/fish" ]
 then
-  chsh -s /opt/homebrew/bin/fish trond.hapnes 
+  chsh -s /opt/homebrew/bin/fish {{ if eq .buypass_machine true }}trond.hapnes{{ else }}trondvh{{ end }}
 fi
 
 {{ end -}}
