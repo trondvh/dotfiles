@@ -6,6 +6,10 @@ alias k='kubectl'
 alias kctx='kubectx'
 alias kns='kubens'
 
+# Directory navigation aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+
 # History
 alias history-ignore-space-on='\
 setopt hist_ignore_space;\
