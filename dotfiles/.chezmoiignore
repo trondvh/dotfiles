@@ -1,0 +1,9 @@
+# Repository management files
+README.md
+install.sh
+.git/
+.gitignore
+.chezmoiignore
+
+# Scripts directory
+dot_chezmoi/ 
