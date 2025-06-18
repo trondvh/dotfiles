@@ -49,6 +49,7 @@ packages:
       casks:
         - docker
         - lens
+        - royal-tsx
       mas:
         # Add buypass-specific Mac App Store apps here
 
