@@ -8,9 +8,9 @@ packages:
       - jq
       - lsd
       - mas
-      - 1password-cli
     casks:
       - 1password
+      - 1password-cli
       - bartender
       - firefox
       - iterm2
