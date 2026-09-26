@@ -30,15 +30,15 @@ mkdir -p ~/.config/chezmoi
 case "$machine_type" in
     1)
         echo "Setting up for personal machine..."
-        printf '[data]\nbuypass_machine = false\n' > ~/.config/chezmoi/chezmoi.toml
+        printf '[data]\nmachine_type = "personal"\nbuypass_machine = false\njobr_machine = false\n' > ~/.config/chezmoi/chezmoi.toml
         ;;
     2)
         echo "Setting up for Jobr machine..."
-        printf '[data]\njobr_machine = true\nbuypass_machine = false\n' > ~/.config/chezmoi/chezmoi.toml
+        printf '[data]\nmachine_type = "jobr"\nbuypass_machine = false\njobr_machine = true\n' > ~/.config/chezmoi/chezmoi.toml
         ;;
     3)
         echo "Setting up for Buypass machine..."
-        printf '[data]\nbuypass_machine = true\n' > ~/.config/chezmoi/chezmoi.toml
+        printf '[data]\nmachine_type = "buypass"\nbuypass_machine = true\njobr_machine = false\n' > ~/.config/chezmoi/chezmoi.toml
         ;;
     *)
         echo "Invalid choice. Exiting."

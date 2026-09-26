@@ -1,0 +1,34 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+set -euo pipefail
+
+# Ensure Homebrew is on PATH
+if [ -x "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x "/usr/local/bin/brew" ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+# Clean up legacy LaunchAgent if it exists
+if [ -f "$HOME/Library/LaunchAgents/local.update-brew.plist" ]; then
+    echo "==> Removing legacy Homebrew update LaunchAgent..."
+    launchctl unload "$HOME/Library/LaunchAgents/local.update-brew.plist" 2>/dev/null || true
+    rm -f "$HOME/Library/LaunchAgents/local.update-brew.plist"
+    rm -f "$HOME/.config/launchagents/local.update-brew.plist"
+fi
+
+# Setup homebrew-autoupdate
+echo "==> Configuring automatic daily Homebrew background updates..."
+brew tap homebrew/autoupdate 2>/dev/null || true
+
+# Start or restart autoupdate (runs once every 24h = 86400s in background with macOS notifications)
+if brew autoupdate status 2>/dev/null | grep -q "Autoupdate is installed and running"; then
+    echo "==> Homebrew autoupdate is already running."
+else
+    brew autoupdate start 86400 --upgrade --cleanup --enable-notification 2>/dev/null || \
+    brew autoupdate restart 86400 --upgrade --cleanup --enable-notification 2>/dev/null || true
+fi
+
+echo "==> Homebrew autoupdate successfully configured."
+{{ end -}}

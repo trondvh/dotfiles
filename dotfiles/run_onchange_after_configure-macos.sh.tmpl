@@ -3,11 +3,24 @@
 
 set -eufo pipefail
 
-# Set Fish as default shell
-echo "/opt/homebrew/bin/fish" | sudo tee -a /etc/shells
-if [ "$SHELL" != "/usr/local/bin/fish" ]
-then
-  chsh -s /opt/homebrew/bin/fish {{ if eq .buypass_machine true }}trond.hapnes{{ else }}trondvh{{ end }}
+FISH_BIN="/opt/homebrew/bin/fish"
+if [ ! -x "$FISH_BIN" ]; then
+    FISH_BIN="/usr/local/bin/fish"
+fi
+
+# Add Fish to /etc/shells if not already present
+if [ -x "$FISH_BIN" ]; then
+    if ! grep -qxF "$FISH_BIN" /etc/shells; then
+        echo "Adding $FISH_BIN to /etc/shells..."
+        echo "$FISH_BIN" | sudo tee -a /etc/shells >/dev/null
+    fi
+
+    # Set Fish as default shell for current user if not already set
+    CURRENT_SHELL=$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk '{print $2}')
+    if [ "$CURRENT_SHELL" != "$FISH_BIN" ]; then
+        echo "Changing default shell to $FISH_BIN for $USER..."
+        chsh -s "$FISH_BIN" "$USER"
+    fi
 fi
 
 {{ end -}}

@@ -1,0 +1,31 @@
+#!/bin/bash
+set -euo pipefail
+
+# Ensure Homebrew is on PATH (Apple Silicon or Intel)
+if [ -x "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x "/usr/local/bin/brew" ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+echo "==> Updating Homebrew formulae..."
+brew update
+
+echo "==> Upgrading installed packages..."
+brew upgrade
+
+echo "==> Upgrading casks..."
+brew upgrade --cask
+
+if command -v mas &>/dev/null; then
+    echo "==> Upgrading Mac App Store apps..."
+    mas upgrade || true
+fi
+
+echo "==> Cleaning up old versions and caches..."
+brew cleanup
+
+echo "==> Checking system health..."
+brew doctor || true
+
+echo "==> Homebrew is completely up to date!"

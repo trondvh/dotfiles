@@ -1,13 +1,29 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
-# Debug information
-echo "Debug: Available variables:"
-echo "chezmoi.os: {{ .chezmoi.os }}"
-echo "jobr_machine: {{ .jobr_machine }}"
+set -euo pipefail
+
+# Determine machine type
+{{- $machine := "personal" }}
+{{- if hasKey . "machine_type" }}
+  {{- $machine = .machine_type }}
+{{- else if and (hasKey . "jobr_machine") (eq .jobr_machine true) }}
+  {{- $machine = "jobr" }}
+{{- else if and (hasKey . "buypass_machine") (eq .buypass_machine true) }}
+  {{- $machine = "buypass" }}
+{{- end }}
+
+echo "==> Configuring packages for macOS (profile: {{ $machine }})..."
+
+# Ensure Homebrew is on PATH
+if [ -x "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x "/usr/local/bin/brew" ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # Install common packages
-echo "Installing common packages..."
+echo "==> Installing common packages..."
 brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.common.brews -}}
 brew {{ . | quote }}
@@ -17,9 +33,9 @@ cask {{ . | quote }}
 {{ end -}}
 EOF
 
-# Install jobr packages if this is a jobr machine
-{{ if eq .jobr_machine true -}}
-echo "Installing jobr packages..."
+# Install workplace packages if applicable
+{{ if eq $machine "jobr" -}}
+echo "==> Installing Jobr workplace packages..."
 brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.workplace.jobr.brews -}}
 brew {{ . | quote }}
@@ -28,20 +44,59 @@ brew {{ . | quote }}
 cask {{ . | quote }}
 {{ end -}}
 EOF
+{{ else if eq $machine "buypass" -}}
+echo "==> Installing Buypass workplace packages..."
+brew bundle --file=/dev/stdin <<EOF
+{{ range .packages.workplace.buypass.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.workplace.buypass.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
 {{ end -}}
 
-# Install Mac App Store apps
+# Install personal packages if defined
+{{ if and (eq $machine "personal") (hasKey .packages "personal") -}}
+{{- if or .packages.personal.brews .packages.personal.casks }}
+echo "==> Installing Personal packages..."
+brew bundle --file=/dev/stdin <<EOF
+{{ range .packages.personal.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.personal.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
+{{- end }}
+{{ end -}}
+
+# Install common Mac App Store apps
 {{- if .packages.common.mas }}
-echo "Installing common Mac App Store apps..."
-{{ range .packages.common.mas -}}
-mas install {{ . | quote }}
-{{ end -}}
+if command -v mas &>/dev/null; then
+    echo "==> Installing common Mac App Store apps..."
+    {{ range .packages.common.mas -}}
+    mas install {{ . | quote }} || true
+    {{ end -}}
+fi
 {{- end }}
 
-{{- if and (eq .jobr_machine true) .packages.workplace.jobr.mas }}
-echo "Installing jobr Mac App Store apps..."
-{{ range .packages.workplace.jobr.mas -}}
-mas install {{ . | quote }}
+# Install workplace Mac App Store apps
+{{ if and (eq $machine "jobr") .packages.workplace.jobr.mas -}}
+if command -v mas &>/dev/null; then
+    echo "==> Installing Jobr Mac App Store apps..."
+    {{ range .packages.workplace.jobr.mas -}}
+    mas install {{ . | quote }} || true
+    {{ end -}}
+fi
+{{ else if and (eq $machine "buypass") .packages.workplace.buypass.mas -}}
+if command -v mas &>/dev/null; then
+    echo "==> Installing Buypass Mac App Store apps..."
+    {{ range .packages.workplace.buypass.mas -}}
+    mas install {{ . | quote }} || true
+    {{ end -}}
+fi
 {{ end -}}
-{{- end }}
+
+echo "==> Package installation complete."
 {{ end -}}

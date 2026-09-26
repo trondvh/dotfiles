@@ -1,6 +1,6 @@
 # Dotfiles
 
-My personal dotfiles managed with chezmoi.
+Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/) for macOS.
 
 ## Installation
 
@@ -23,35 +23,39 @@ cd dotfiles
 ./install.sh
 ```
 
-## Machine Types
+## Machine Profiles
 
-The dotfiles support different machine types:
-- Personal
-- Jobr
-- Buypass
+The dotfiles automatically support different machine profiles:
+- **Personal** (common apps and tools)
+- **Jobr** (workplace tools: Cursor, Docker, Google Cloud SDK, Teams, Slack, Synology Drive, etc.)
+- **Buypass** (workplace tools: Ansible, Autossh, Kubectx, Docker, Lens, Royal TSX)
 
-The installation script will prompt you to select the appropriate machine type.
+The installation script prompts for the profile, which sets `machine_type` in `~/.config/chezmoi/chezmoi.toml`.
 
-## Updating
+## Homebrew & Package Maintenance
 
-To update your dotfiles:
+### Automatic Daily Updates
+Homebrew updates run silently in the background once every 24 hours via `homebrew/autoupdate`:
+- Upgrades formulae and casks in the background.
+- Runs `brew cleanup` to keep disk usage low.
+- Displays a native macOS notification banner when updates complete (no disruptive terminal popups).
+
+### Manual Updates & Aliases
+You can also upgrade manually at any time:
+- Run `update-brew` (or simply `bup` in Fish) to update Homebrew, casks, and Mac App Store apps in one go.
+- Run `bcheck` to see outdated packages.
+
+## Updating Dotfiles
+
+To pull the latest dotfiles and apply changes:
 
 ```bash
 chezmoi update
-chezmoi apply
+# or using fish alias:
+czu
 ```
 
-## Structure
-
-- `dot_chezmoi/`: Repository management files
-  - `scripts/`: Installation and utility scripts
-    - `install.sh`: Initial installation script
-    - `run-in-terminal.sh`: Script to run brew updates in Terminal
-    - `update-brew.sh`: Homebrew update script
-  - `README.md`: This file
-- `dot_config/`: Configuration files
-  - `launchagents/`: macOS Launch Agents
-- `common/` - Common packages and configurations
-- `workplace.jobr/` - Jobr-specific packages
-- `workplace.buypass/` - Buypass-specific packages
-- `personal/` - Personal-specific packages 
+Useful aliases included in Fish:
+- `cz` / `cza` / `czd` / `czu`: `chezmoi` shortcuts
+- `bup` / `bcheck` / `bclean`: Homebrew shortcuts
+- `ls` / `l` / `la` / `lla`: `lsd` listings
