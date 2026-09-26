@@ -3,6 +3,7 @@ packages:
     brews:
       - bat
       - fish
+      - fnm
       - starship
       - git
       - jq
