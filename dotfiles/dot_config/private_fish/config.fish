@@ -3,9 +3,9 @@ if test -d /opt/homebrew/bin
   set -gx PATH /opt/homebrew/bin $PATH
 end
 
-# Add ~/.local/bin to PATH (Hermes Agent & user scripts)
-if test -d ~/.local/bin
-  contains ~/.local/bin $PATH; or set -gx PATH ~/.local/bin $PATH
+# Hermes Agent & user binaries — ensure ~/.local/bin is on PATH
+if test -d $HOME/.local/bin
+  fish_add_path $HOME/.local/bin
 end
 
 if test -f ~/.config/fish/aliases.fish
@@ -21,7 +21,9 @@ end
 
 # fnm (Fast Node Manager)
 set -q FNM_DIR; or set -gx FNM_DIR "$HOME/.local/share/fnm"
-contains $FNM_DIR/bin $PATH; or set -gx PATH $FNM_DIR/bin $PATH
+if test -d "$FNM_DIR/bin"
+  fish_add_path "$FNM_DIR/bin"
+end
 if type -q fnm
   fnm env --use-on-cd | source
 end
