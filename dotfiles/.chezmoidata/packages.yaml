@@ -15,7 +15,7 @@ packages:
       - bartender
       - firefox
       - iterm2
-      - macvim
+      - macvim-app
       - spotify
       - visual-studio-code
       - raycast
@@ -33,8 +33,8 @@ packages:
       casks:
         - adobe-creative-cloud
         - cursor
-        - docker
-        - google-cloud-sdk
+        - docker-desktop
+        - gcloud-cli
         - lens
         - microsoft-outlook
         - microsoft-teams
@@ -49,7 +49,7 @@ packages:
         - autossh
         - kubectx
       casks:
-        - docker
+        - docker-desktop
         - lens
         - royal-tsx
       mas:
