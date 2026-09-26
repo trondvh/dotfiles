@@ -21,6 +21,8 @@ fi
 # Setup homebrew-autoupdate
 echo "==> Configuring automatic daily Homebrew background updates..."
 brew tap homebrew/autoupdate 2>/dev/null || true
+brew trust domt4/autoupdate 2>/dev/null || true
+brew trust homebrew/autoupdate 2>/dev/null || true
 
 # Start or restart autoupdate (runs once every 24h = 86400s in background with macOS notifications)
 if brew autoupdate status 2>/dev/null | grep -q "Autoupdate is installed and running"; then
